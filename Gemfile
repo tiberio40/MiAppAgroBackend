@@ -19,6 +19,11 @@ gem 'puma', '~> 5.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+gem 'rack-cors'
+#Use Devise
+gem 'devise'
+gem 'devise-jwt'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
