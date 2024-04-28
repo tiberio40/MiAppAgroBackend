@@ -290,3 +290,50 @@ Processing by RegistrationsController#create as */*
 Completed 201 Created in 149ms (Views: 0.1ms | ActiveRecord: 2.2ms | Allocations: 13116)
 
 
+Started POST "/signup" for 172.22.0.1 at 2024-04-28 04:02:52 +0000
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by RegistrationsController#create as */*
+  Parameters: {"user"=>{"email"=>"frenando40@hotmails.com", "password"=>"[FILTERED]", "first_name"=>"Laurent", "last_name"=>"Castaneda"}, "registration"=>{"user"=>{"email"=>"frenando40@hotmails.com", "password"=>"[FILTERED]", "first_name"=>"Laurent", "last_name"=>"Castaneda"}}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "frenando40@hotmails.com"], ["LIMIT", 1]]
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "first_name", "last_name", "created_at", "updated_at", "jti") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["email", "frenando40@hotmails.com"], ["encrypted_password", "$2a$12$ApGuQzK2NlejfTd7yb1VlOhqBl0WHMv7Xrh6vVcakKvqlgZwmjTwW"], ["first_name", "Laurent"], ["last_name", "Castaneda"], ["created_at", "2024-04-28 04:02:53.058936"], ["updated_at", "2024-04-28 04:02:53.058936"], ["jti", "e5bcaff0-44a6-4687-8b5d-42880ac4db9f"]]
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/registrations_controller.rb:6:in `create'
+Completed 201 Created in 158ms (Views: 0.2ms | ActiveRecord: 6.3ms | Allocations: 13117)
+
+
+Started POST "/login" for 172.22.0.1 at 2024-04-28 04:02:59 +0000
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"frenando40@hotmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"frenando40@hotmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "frenando40@hotmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:12:in `create'
+Completed 500 Internal Server Error in 141ms (ActiveRecord: 0.2ms | Allocations: 2155)
+
+
+  
+NoMethodError (undefined method `is_banned' for an instance of User):
+  
+app/controllers/sessions_controller.rb:19:in `create'
+Started POST "/login" for 172.22.0.1 at 2024-04-28 04:05:38 +0000
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"frenando40@hotmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"frenando40@hotmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "frenando40@hotmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:12:in `create'
+Completed 500 Internal Server Error in 145ms (ActiveRecord: 1.1ms | Allocations: 6022)
+
+
+  
+NoMethodError (undefined method `user_role' for an instance of User):
+  
+app/controllers/sessions_controller.rb:21:in `create'
+Started POST "/login" for 172.22.0.1 at 2024-04-28 04:05:47 +0000
+Processing by SessionsController#create as */*
+  Parameters: {"user"=>{"email"=>"frenando40@hotmail.com", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"email"=>"frenando40@hotmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "frenando40@hotmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:12:in `create'
+Completed 200 OK in 144ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 6000)
+
+

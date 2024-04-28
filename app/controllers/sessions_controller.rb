@@ -14,19 +14,11 @@ class SessionsController < Devise::SessionsController
       sign_in(resource_name, resource)
       yield resource if block_given?
 
-      user_json = {}
-
-      if resource.is_banned == true
-        user_json = { message: "Tu cuenta se encuntra bloqueada"}
-      else
-        user_json = {
+      user_json = {
           email: resource.email,
           token: current_token,
-          fullname: resource.first_name + " " + resource.last_name,
-          code_role: resource.user_role.code,
-          name_role: resource.user_role.name
+          fullname: resource.first_name + " " + resource.last_name
         }
-      end    
       
       render json: user_json, status: :ok
     end
